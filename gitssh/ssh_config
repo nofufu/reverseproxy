@@ -1,0 +1,11 @@
+Host github-kmirowski
+  HostName github.com
+  User git
+  IdentityFile C:/Users/k.mirkowski/Desktop/reverseproxy/work
+  IdentitiesOnly yes
+
+Host github-nofufu
+  HostName github.com
+  User git
+  IdentityFile C:/Users/k.mirkowski/Desktop/reverseproxy/keys/private
+  IdentitiesOnly yes
