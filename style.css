@@ -1,0 +1,283 @@
+/* Style dla logo */
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px 0;
+}
+
+.sidebar-logo {
+  max-width: 90%;
+  height: auto;
+}
+
+/* Podstawowe style */
+body { font-family: Arial; margin: 0; padding: 0; display: flex; }
+.sidebar { 
+  width: 250px; 
+  background: #5e5b5b; /* Zmieniono na ciemnoszary */
+  padding: 20px; 
+  height: 100vh; 
+  overflow-y: auto; 
+  color: white; /* Dodano biały kolor tekstu dla lepszej czytelności */
+}
+.content { 
+  flex: 1;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Wyśrodkowanie w poziomie */
+}
+
+/* Dodaj kontener dla właściwej treści */
+.content-container {
+  width: 80%; /* Zmniejsz szerokość do 80% */
+  max-width: 900px; /* Maksymalna szerokość */
+  margin: 0 auto; /* Wyśrodkuj */
+}
+
+/* Style dla nagłówka strony */
+#pageTitle {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Style dla treści strony */
+#pageContent {
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.content-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+ul { list-style: none; padding: 0; }
+li { margin: 5px 0; padding: 10px; background: white; border-radius: 5px; cursor: pointer; }
+li:hover { background: #e9e9e9; }
+.active { background: #0366d6; color: white; }
+
+/* Style specyficzne dla Confluence */
+.content-wrapper {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+}
+
+/* Panel info */
+.confluence-information-macro {
+  background-color: #EFF6FF;
+  border: 1px solid #DEEBFF;
+  border-radius: 3px;
+  margin: 10px 0;
+  padding: 10px 15px;
+  display: block;
+  width: 100%;
+}
+
+.confluence-information-macro-information {
+  background-color: #EFF6FF;
+  border-color: #DEEBFF;
+}
+
+.confluence-information-macro-note {
+  background-color: #FFFAE6;
+  border-color: #FFC400;
+}
+
+.confluence-information-macro-warning {
+  background-color: #FFEBE6;
+  border-color: #FF5630;
+}
+
+.confluence-information-macro-tip {
+  background-color: #E3FCEF;
+  border-color: #57D9A3;
+}
+
+/* Emoji i ikony */
+.emoji, .emoticon {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 2px;
+}
+
+/* Naprawia ikony dokumentów, folderów itp. */
+[data-emoji-id], [data-emoticon-name], .icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 4px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Specyficzne ikony */
+.icon-page, .icon-default {
+  background-image: url("https://commhaven.atlassian.net/wiki/s/en_GB/8100/5084f018d64a97dc638ca9a178856f851ea353ff/_/images/icons/document_16.png");
+}
+
+.icon-info {
+  background-image: url("https://commhaven.atlassian.net/wiki/s/en_GB/8100/5084f018d64a97dc638ca9a178856f851ea353ff/_/images/icons/emoticons/information.svg");
+}
+
+.icon-note {
+  background-image: url("https://commhaven.atlassian.net/wiki/s/en_GB/8100/5084f018d64a97dc638ca9a178856f851ea353ff/_/images/icons/emoticons/warning.svg");
+}
+
+/* Naprawy formatowania */
+#pageContent h1, #pageContent h2, #pageContent h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+#pageContent p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+#pageContent ul, #pageContent ol {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+#pageContent li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  background: none;
+  padding: 0;
+  cursor: default;
+}
+
+/* Emotki specyficzne */
+.icon-book, [data-emoji-id="1f4d8"] {
+  background-image: url("https://commhaven.atlassian.net/wiki/s/en_GB/8100/5084f018d64a97dc638ca9a178856f851ea353ff/_/images/icons/emoticons/blue_book.png");
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin: 0 5px;
+}
+
+.icon-note, [data-emoji-id="1f4cb"] {
+  background-image: url("https://commhaven.atlassian.net/wiki/s/en_GB/8100/5084f018d64a97dc638ca9a178856f851ea353ff/_/images/icons/emoticons/clipboard.png");
+}
+
+/* Style dla tabel i baz danych */
+#pageContent table.confluence-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  display: block;
+}
+
+#pageContent table.confluence-table th {
+  background-color: #f4f5f7;
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid #DFE1E6;
+  font-weight: bold;
+}
+
+#pageContent table.confluence-table td {
+  padding: 8px 12px;
+  border: 1px solid #DFE1E6;
+  vertical-align: top;
+}
+
+#pageContent table td, #pageContent table th {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+}
+
+#pageContent table th {
+  background-color: #f2f2f2;
+}
+
+/* Style specyficzne dla baz danych */
+.confluenceTd, .confluenceTh {
+  border: 1px solid #DFE1E6;
+  padding: 8px 12px;
+}
+
+/* Ikona bazy danych */
+.database-macro {
+  margin: 15px 0;
+  width: 100%;
+}
+
+/* Style dla przycisków filtrowania i sortowania */
+.database-macro-header {
+  background-color: #f4f5f7;
+  padding: 8px;
+  border-radius: 4px 4px 0 0;
+  border: 1px solid #DFE1E6;
+  border-bottom: none;
+}
+
+/* Paski narzędzi bazy danych */
+.database-macro-toolbar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Zmień kolor linków/elementów listy w bocznym pasku */
+.sidebar li {
+  background: #8f8686;
+  color: white;
+  border-left: 3px solid #666666;
+}
+
+.sidebar li:hover {
+  background: #cfcbcb;
+}
+
+.sidebar li.active {
+  background: #0366d6;
+  border-left: 3px solid #0099ff;
+}
+
+/* Styl dla nagłówka w sidebarze */
+.sidebar h2 {
+  color: #ffffff;
+  border-bottom: 1px solid #555555;
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+/* Popraw style dla obrazków i tabel w treści */
+#pageContent img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+
+/* Style dla paneli informacyjnych */
+#pageContent .confluence-information-macro {
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 5px;
+}

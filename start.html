@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Confluence Viewer</title>
+  <!-- Importuj style -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="http://localhost:3001/confluence-styles.css">
+</head>
+<body>
+  <div class="sidebar">
+    <!-- Dodaj logo -->
+    <div class="logo-container">
+      <img src="Artboard 1.png" alt="Xaris One Logo" class="sidebar-logo">
+    </div>
+    
+    <h2>Strony</h2>
+    <ul id="pageList">Ładowanie...</ul>
+  </div>
+  
+  <div class="content">
+    <h1 id="pageTitle">Wybierz stronę</h1>
+    <div id="pageContent" class="content-wrapper">
+      <p>Kliknij stronę w menu po lewej stronie, aby zobaczyć jej zawartość.</p>
+    </div>
+  </div>
+
+  <script>
+    async function loadPages() {
+      try {
+        const res = await fetch("/pages");
+        const data = await res.json();
+
+        const container = document.getElementById("pageList");
+        container.innerHTML = "";
+
+        if (data.results && data.results.length > 0) {
+          data.results.forEach(page => {
+            const li = document.createElement("li");
+            li.textContent = page.title;
+            li.onclick = () => loadPageContent(page.id, page.title);
+            container.appendChild(li);
+          });
+          
+          // Ładuj pierwszą stronę od razu
+          if (data.results[0]) {
+            loadPageContent(data.results[0].id, data.results[0].title);
+          }
+        } else {
+          container.innerHTML = "<li>Brak stron w space</li>";
+        }
+      } catch (err) {
+        console.error("Błąd podczas ładowania stron:", err);
+        document.getElementById("pageList").innerHTML = "<li>Błąd podczas ładowania stron</li>";
+      }
+    }
+
+    async function loadPageContent(pageId, pageTitle) {
+      try {
+        document.getElementById("pageTitle").textContent = pageTitle;
+        document.getElementById("pageContent").innerHTML = "Ładowanie...";
+        
+        const res = await fetch(`/page/${pageId}`);
+        const data = await res.json();
+        
+        // Wyświetl zawartość strony
+        document.getElementById("pageContent").innerHTML = data.body.view.value;
+        
+        // Napraw renderowanie po załadowaniu treści
+        fixRendering();
+        
+        // Oznacz aktywną stronę
+        const items = document.querySelectorAll("#pageList li");
+        items.forEach(item => {
+          if (item.textContent === pageTitle) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+      } catch (err) {
+        console.error("Błąd podczas ładowania zawartości strony:", err);
+        document.getElementById("pageContent").innerHTML = "Błąd podczas ładowania zawartości strony.";
+      }
+    }
+    
+    // Funkcja naprawiająca renderowanie
+    function fixRendering() {
+      // Napraw relatywne URLe obrazków
+      const images = document.querySelectorAll("#pageContent img");
+      images.forEach(img => {
+        if (img.src && (img.src.startsWith('/') || img.src.startsWith('wiki'))) {
+          img.src = `https://commhaven.atlassian.net${img.src.startsWith('/') ? img.src : '/' + img.src}`;
+        }
+      });
+      
+      // Napraw strukturę HTML dla treści Confluence
+      const sections = document.querySelectorAll("#pageContent div");
+      sections.forEach(section => {
+        // Upewnij się, że tekst jest owinięty w <p> jeśli nie jest częścią innego elementu
+        if (section.innerHTML && !section.innerHTML.trim().startsWith('<')) {
+          section.innerHTML = '<p>' + section.innerHTML + '</p>';
+        }
+      });
+      
+      // Napraw paragrafy i listy
+      const paragraphs = document.querySelectorAll("#pageContent p");
+      paragraphs.forEach(p => {
+        // Usuń zbędne nowe linie, które mogą powodować "rozjeżdżanie się" tekstu
+        p.innerHTML = p.innerHTML.replace(/\n+/g, ' ');
+      });
+      
+      // Napraw listy
+      const lists = document.querySelectorAll("#pageContent ul, #pageContent ol");
+      lists.forEach(list => {
+        const items = list.querySelectorAll('li');
+        items.forEach(item => {
+          // Usuń zbędne nowe linie w elementach listy
+          item.innerHTML = item.innerHTML.replace(/\n+/g, ' ');
+        });
+      });
+    }
+
+    loadPages();
+  </script>
+</body>
+</html>

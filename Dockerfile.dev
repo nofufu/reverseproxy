@@ -1,0 +1,33 @@
+FROM node:18-alpine
+
+# Ustaw zmienne środowiskowe
+ENV NODE_ENV=development
+ENV PORT=3001
+
+# Utwórz katalog aplikacji
+WORKDIR /app
+
+# Instaluj nodemon dla automatycznego przeładowania
+RUN npm install -g nodemon
+
+# Zainstaluj zależności produkcyjne
+COPY package*.json ./
+RUN npm install
+
+# Skopiuj kod źródłowy
+COPY . .
+
+# Informacja o kontenerze
+LABEL maintainer="Kacper Mirowski <k.mirowski@signalgroup.pl>"
+LABEL version="1.0.0"
+LABEL description="Confluence Viewer Proxy Application"
+
+# Sprawdzenie zdrowia kontenera
+HEALTHCHECK --interval=30s --timeout=3s --start-period=15s --retries=3 \
+  CMD wget -qO- http://localhost:$PORT/health || exit 1
+
+# Otwórz port
+EXPOSE 3001
+
+# Użyj nodemon do automatycznego przeładowania przy zmianach
+CMD ["nodemon", "--legacy-watch", "server.js"]

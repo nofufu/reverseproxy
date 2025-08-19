@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: reverseproxy-app:dev
+    container_name: reverseproxy-app
+    ports:
+      - "3002:3001"   # host:container – zmieniono z 3001:3001
+    env_file: .env
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      CONFLUENCE_EMAIL: k.mirowski@signalgroup.pl
+      CONFLUENCE_SPACE_KEY: proxytest
+    volumes:
+      - .:/app
+      - /app/node_modules
+    working_dir: /app
+    command: nodemon --legacy-watch server.js
+
+networks:
+  app-network:
+    driver: bridge
+
