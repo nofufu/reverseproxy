@@ -1,0 +1,22 @@
+# Sekrety i konfiguracje lokalne
+.env
+.env.*
+!.env.example
+
+# Zależności
+node_modules/
+
+# Logi i cache
+logs/
+*.log
+
+# Artefakty buildów
+dist/
+build/
+coverage/
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
